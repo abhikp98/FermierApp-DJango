@@ -1,0 +1,32 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+    <form
+      action="/admin_add_notification_post"
+      method="post"
+      enctype="multipart/form-data">
+    <table class="table table-borderless">
+        <tr align="center">
+            <td>
+                <textarea type="text" placeholder="Notification" class="form-control w-50" name="notification" autofocus required></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="file" class="file-upload" accept="application/pdf" name="file">
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-success">Add</button>
+
+            </td>
+
+        </tr>
+    </table>
+
+
+    </form>
+{% endblock %}

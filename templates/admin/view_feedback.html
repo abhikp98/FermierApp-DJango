@@ -1,0 +1,21 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+<table class="table table-bordered w-75 mx-auto">
+      <tr>
+          <td>Sl</td>
+        <td>Name</td>
+        <td>Feedback</td>
+        <td>Date</td>
+        <td>Time</td>
+      </tr>
+        {% for i in data %}
+      <tr>
+          <td>{{ forloop.counter }}</td>
+        <td>{{ i.FARMER.name }}</td>
+        <td>{{ i.feedback }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.time }}</td>
+      </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+
+    <form action="/admin_add_officer_post" onsubmit="return validate()" method="post">
+    <table class="table table-borderless w-50 mx-auto">
+    <tr>
+        <td>
+            <input type="text" class="form-control" name="name" placeholder="Name" autofocus required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="email" class="form-control" name="email" placeholder="Email" autofocus required>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="tel" class="form-control" name="phone" placeholder="Phone" autofocus required>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="tel" class="form-control" name="latitude" placeholder="Latitude" id="latitude" required readonly>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="tel" class="form-control" name="longitude" placeholder="Longitude" id="longitude" readonly required>
+
+        </td>
+    </tr>
+    <tr align="center">
+        <td>
+            <div class="" id="gmap"></div>
+
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <button type="submit" class="btn btn-success">Add</button>
+
+        </td>
+    </tr>
+    </table>
+    </form>
+  <script type="text/javascript" async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&callback=GetMylocation">
+</script>
+<script type="text/javascript">
+
+    var map;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(11.875379490542771, 75.37346707223492);
+            var myOptions = {
+                zoom:7,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("latitude").value = clickLat.toFixed(5);
+                document.getElementById("longitude").value = clickLon.toFixed(5);
+
+            });
+    }
+
+    window.onload = function () { GetMylocation() };
+
+
+</script>
+     <style>
+ div#gmap {
+
+        width: 100%;
+        height: 300px;
+        border:double;
+ }
+    </style>
+
+<script>
+
+function GetMylocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    //x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Geolocation is not supported by this browser.")
+  }
+}
+var x1 = document.getElementById("latitude");
+var x2 = document.getElementById("longitude");
+var map;
+function showPosition(position) {
+  x1.value=position.coords.latitude;
+  x2.value=position.coords.longitude;
+
+  var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            var myOptions = {
+                zoom:14,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("latitude").value = clickLat.toFixed(5);
+                document.getElementById("longitude").value = clickLon.toFixed(5);
+
+            });
+
+
+}
+</script>
+     <script>
+    function validate() {
+
+        input=document.getElementById("textfield5");
+        var st=input.value.split("@");
+        var ln=st.length;
+        if (st[ln-1].length<=2) {
+            alert("Invalid email address!");
+            input.value="";
+            input.focus();
+            return false;
+          }
+        return true;
+    }
+</script>
+{% endblock %}

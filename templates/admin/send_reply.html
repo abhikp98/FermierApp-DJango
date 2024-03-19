@@ -1,0 +1,17 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+    <form method="post" action="/admin_send_reply_post/{{ id }}">
+    <table class="table table-borderless w-50 mx-auto">
+    <tr>
+        <td>
+            <textarea name="reply" class="form-control" placeholder="Drop Yourr Reply" required></textarea>
+        </td>
+    </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Send" class="btn btn-success">
+            </td>
+        </tr>
+    </table>
+    </form>
+{% endblock %}

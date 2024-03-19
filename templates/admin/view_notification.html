@@ -1,0 +1,23 @@
+{% extends 'admin/admin_home.html' %}
+{% block body %}
+    <table class="table table-bordered w-75 mx-auto">
+      <tr>
+          <th>Sl</th>
+        <th>Notification</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+        {% for i in data %}
+      <tr>
+      <td>{{ forloop.counter }}</td>
+        <td>{{ i.notification }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.time }}</td>
+        <td>{% if i.filename|length == 0 %}Nothing{% else %}<a href="{{ i.filename }}" target="_blank" class="btn btn-info">View File</a>{% endif %}</td>
+        <td><a href="/admin_delete_notification/{{ i.id }}" onclick="return confirm('Do you really want to delete?')" class="btn btn-danger">Delete</a></td>
+      </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

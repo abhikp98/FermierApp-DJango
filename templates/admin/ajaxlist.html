@@ -1,0 +1,31 @@
+<table class="table table-bordered w-75 mx-auto" id="listData">
+        <tr><td colspan="8" align="center">Sort It:
+      <select onchange="adds(this.value)" class="w-25 mx-auto">
+          <option>--SELECT--</option>
+          <option value="Crop" {% if type == 'crop' %}selected{% endif %}>CROP</option>
+          <option value="Fertilizer" {% if type == 'Fertilizer' %}selected{% endif %}>FERTILIZER</option>
+          <option value="Pesticide" {% if type == 'Pepticide' %}selected{% endif %}>PESTICIDE</option>
+      </select></td></tr>
+      <tr>
+          <td>Sl</td>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Type</td>
+        <td>Rate</td>
+        <td>Photo</td>
+        <td>Edit</td>
+        <td>Delete</td>
+      </tr>
+        {% for i in data %}
+      <tr>
+      <td>{{ forloop.counter }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.description }}</td>
+        <td>{{ i.type }}</td>
+        <td>{{ i.price }}</td>
+        <td><img src="{{ i.photo }}" width="100" height="100" /></td>
+        <td><a href="/admin_edit_crop_fert_perc/{{ i.id }}">Click Here</a></td>
+        <td><a href="/admin_delete_crop_fert_perc/{{ i.id }}" onclick="return confirm('Do you really want to delete?')">Click Here</a></td>
+      </tr>
+        {% endfor %}
+    </table>

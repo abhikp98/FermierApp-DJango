@@ -1,0 +1,13 @@
+{% extends 'officer/officer_home.html' %}
+{% block body %}
+<table class="table-bordered table w-75">
+    {% for i in data %}
+    <tr>
+        <td>
+            <a href="/chatt/{{ i.id }}">{{ i.name }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'officer/officer_home.html' %}
+{% block body %}
+    <table class="table-bordered table w-75">
+      <tr>
+          <td>Sl</td>
+        <td>Notification</td>
+        <td>Date</td>
+        <td>Time</td>
+        <td>File</td>
+      </tr>
+        {% for i in data %}
+      <tr>
+      <td>{{ forloop.counter }}</td>
+        <td>{{ i.notification }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.time }}</td>
+        <td>{% if i.filename|length == 0 %}Nothing{% else %}<a href="{{ i.filename }}" target="_blank">Click Here</a>{% endif %}</td>
+      </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

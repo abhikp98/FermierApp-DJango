@@ -1,0 +1,21 @@
+{% extends 'officer/officer_home.html' %}
+{% block body %}
+    <table class="table table-bordered w-75">
+      <tr>
+          <td>Sl</td>
+        <td>Item</td>
+        <td>Quantity</td>
+          <td>Total</td>
+        <td>Current Stock</td>
+      </tr>
+        {% for i in data %}
+      <tr>
+      <td>{{ forloop.counter }}</td>
+        <td>{{ i.item }}</td>
+        <td>{{ i.count }}</td>
+      <td>{{ i.total }}</td>
+        <td>{{ i.stock }}</td>
+      </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

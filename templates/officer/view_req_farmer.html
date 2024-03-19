@@ -1,0 +1,23 @@
+{% extends 'officer/officer_home.html' %}
+{% block body %}
+    <table class="table-bordered table w-75 mx-auto">
+      <tr>
+          <td>Sl</td>
+        <td>Farmer Name</td>
+        <td>Date</td>
+        <td>Time</td>
+          <td>Items</td>
+          <td>Approval</td>
+      </tr>
+        {% for i in data %}
+      <tr>
+          <td>{{ forloop.counter }}</td>
+        <td>{{ i.FARMER.name }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.time }}</td>
+      <td><a href="/officer_view_items/{{ i.id }}"></a></td>
+      <td>{% if i.status == 'approved' or i.status == 'rejected' %}{{ i.status }}{% else %}<a href="/officer_accept_request/{{ i.id }}" onclick="return confirm('Do you really want to Approve?')">Approve</a><br><a href="/officer_reject_request/{{ i.id }}" onclick="return confirm('Do you really want to Reject?')">Reject</a>{% endif %}</td>
+      </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'officer/officer_home.html' %}
+{% block body %}
+<table class="table table-borderless w-75 mx-auto">
+    <tr><td>Name:</td><td>{{ data.name }}</td></tr>
+    <tr><td>Email:</td><td>{{ data.email }}</td></tr>
+    <tr><td>Phone number:</td><td>{{ data.phone }}</td></tr>
+    <tr><td>Location</td><td><a target="_blank" href="https://www.google.com/maps?q={{ data.latitude }},{{ data.longitude }}">Click here</a></td></tr>
+</table>
+{% endblock %}
